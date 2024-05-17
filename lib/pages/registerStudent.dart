@@ -1,29 +1,35 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class registerStudent extends StatefulWidget {
+
+import 'login.dart'; // Import SharedPreferences
+
+class RegisterStudent extends StatefulWidget {
   @override
-  _registerStudentState createState() => _registerStudentState();
+  _RegisterStudentState createState() => _RegisterStudentState();
 }
 
-class _registerStudentState extends State<registerStudent> {
+class _RegisterStudentState extends State<RegisterStudent> {
+  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
   bool _isPasswordObscured = true;
+  bool _isFocusedusername = false;
+  bool _isFocusedemail = false;
+  bool _isFocusedpassword = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color(0xFFF8FFEF),
-      ),
-      backgroundColor: Color(0xFFF8FFEF),
       body: SingleChildScrollView(
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(height: 20), // Espace pour séparer de la barre d'app
               Container(
-                margin: EdgeInsets.only(top: 60), // Marge en bas
+                margin: EdgeInsets.only(top: 160), // Marge en bas
                 child: Text(
                   'Register',
                   style: TextStyle(
@@ -33,14 +39,26 @@ class _registerStudentState extends State<registerStudent> {
                 ),
               ),
               Container(
-                margin: EdgeInsets.only(top: 13), // Marge en bas
+                padding: EdgeInsets.only(bottom: 15,left: 20,right: 20),
+                margin: EdgeInsets.only(top: 15),
+                decoration: BoxDecoration(
+                  border: Border(
+                    bottom: BorderSide(
+                      color: Color(0XFF3A3A3A),
+                      width: 0.5,
+                    ),
+                  ),
+                ),
                 child: Text(
                   'Create your university account',
                   style: TextStyle(
-                    fontSize: 24,
+                      fontSize: 17,
+                      color: Color(0XFF3A3A3A),
+                      fontWeight: FontWeight.w200
                   ),
                 ),
               ),
+              SizedBox(height: 20),
               Container(
                 margin: EdgeInsets.only(top: 50),
                 width: 360,
@@ -50,97 +68,112 @@ class _registerStudentState extends State<registerStudent> {
                   boxShadow: [
                     BoxShadow(
                       color: Colors.grey.withOpacity(0.4), // Set shadow color
-                      spreadRadius: 3, // Set spread radius
-                      blurRadius: 7, // Set blur radius
-                      offset: Offset(0, 3), // Set offset
+                      spreadRadius: 1, // Set spread radius
+                      blurRadius: 2, // Set blur radius
+                      offset: Offset(0, 0), // Set offset
                     ),
                   ], // Set border radius
                 ),
-                child: TextFormField(
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    labelText: 'Username',
-                    contentPadding:
-                    EdgeInsets.symmetric(horizontal: 18, vertical: 15),
-                  ),
-                ),
-              ),
-              Container(
-                margin: EdgeInsets.only(top: 20),
-                width: 360,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(12),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.4),
-                      spreadRadius: 3,
-                      blurRadius: 7,
-                      offset: Offset(0, 3),
-                    ),
-                  ],
-                ),
-                child: TextFormField(
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    labelText: 'Email',
-                    contentPadding:
-                    EdgeInsets.symmetric(horizontal: 18, vertical: 15),
-                  ),
-                  keyboardType: TextInputType.emailAddress,
-                  // Pour afficher le clavier de l'email
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return 'Veuillez entrer votre email';
-                    }
-                    if (!RegExp(
-                        r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b')
-                        .hasMatch(value)) {
-                      return 'Veuillez entrer une adresse email valide';
-                    }
-                    return null;
+                child:Focus(
+                  onFocusChange: (hasFocus) {
+                    setState(() {
+                      _isFocusedusername = hasFocus;
+                    });
                   },
+                  child: TextFormField(
+                    controller: _usernameController,
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
+                      labelText: 'Username',
+                      labelStyle: TextStyle(color: _isFocusedusername ? Colors.green : Colors.black), // Change color based on focus
+                      contentPadding: EdgeInsets.symmetric(horizontal: 18, vertical: 15),
+                    ),
+                    cursorColor: _isFocusedusername ? Colors.green : Colors.black, // Change cursor color based on focus
+                  ),
                 ),
               ),
               Container(
-                margin: EdgeInsets.only(top: 20),
+                margin: EdgeInsets.only(top: 10),
+                width: 360,
+                decoration: BoxDecoration(
+                  color: Colors.white, // Set border color and width
+                  borderRadius: BorderRadius.circular(12),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.4), // Set shadow color
+                      spreadRadius: 1, // Set spread radius
+                      blurRadius: 2, // Set blur radius
+                      offset: Offset(0, 0), // Set offset
+                    ),
+                  ], // Set border radius
+                ),
+                child:Focus(
+                  onFocusChange: (hasFocus) {
+                    setState(() {
+                      _isFocusedemail = hasFocus;
+                    });
+                  },
+                  child: TextFormField(
+                    controller: _emailController,
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
+                      labelText: 'Email',
+                      labelStyle: TextStyle(color: _isFocusedemail ? Colors.green : Colors.black), // Change color based on focus
+                      contentPadding: EdgeInsets.symmetric(horizontal: 18, vertical: 15),
+                    ),
+                    cursorColor: _isFocusedemail ? Colors.green : Colors.black, // Change cursor color based on focus
+                  ),
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.only(top: 10),
                 width: 360,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(12),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.grey.withOpacity(0.4),
-                      spreadRadius: 3,
-                      blurRadius: 7,
-                      offset: Offset(0, 3),
+                      color: Colors.grey.withOpacity(0.4), // Set shadow color
+                      spreadRadius: 1, // Set spread radius
+                      blurRadius: 2, // Set blur radius
+                      offset: Offset(0, 0), // Set offset
                     ),
                   ],
                 ),
-                child: TextFormField(
-                  obscureText: _isPasswordObscured,
-                  // Utilisez un booléen pour contrôler l'obfuscation du texte
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    labelText: 'Password',
-                    contentPadding:
-                    EdgeInsets.symmetric(horizontal: 18, vertical: 15),
-                    suffixIcon: IconButton(
-                      icon: _isPasswordObscured
-                          ? Icon(Icons.visibility)
-                          : Icon(Icons.visibility_off),
-                      // Changez l'icône en fonction de l'état du mot de passe
-                      onPressed: () {
-                        setState(() {
-                          _isPasswordObscured = !_isPasswordObscured; // Inversez l'état de l'obfuscation du texte
-                        });
-                      },
+                child: Focus(
+                  onFocusChange: (hasFocus) {
+                    setState(() {
+                      _isFocusedpassword = hasFocus;
+                    });
+                  },
+                  child: TextFormField(
+                    controller: _passwordController,
+                    obscureText: _isPasswordObscured,
+                    // Utilisez un booléen pour contrôler l'obfuscation du texte
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
+                      labelText: 'Password',
+                      labelStyle: TextStyle(color: _isFocusedpassword ? Colors.green : Colors.black), // Change color based on focus
+                      contentPadding: EdgeInsets.symmetric(horizontal: 18, vertical: 15),
+                      suffixIcon: IconButton(
+                        icon: _isPasswordObscured
+                            ? Icon(Icons.visibility)
+                            : Icon(Icons.visibility_off),
+                        // Changez l'icône en fonction de l'état du mot de passe
+                        onPressed: () {
+                          setState(() {
+                            _isPasswordObscured =
+                            !_isPasswordObscured; // Inversez l'état de l'obfuscation du texte
+                          });
+                        },
+                      ),
                     ),
+                    cursorColor: _isFocusedpassword ? Colors.green : Colors.black, // Change cursor color based on focus
                   ),
                 ),
               ),
               Container(
-                margin: EdgeInsets.only(top: 20),
+                margin: EdgeInsets.only(top: 30),
                 width: 360,
                 height: 60,
                 decoration: BoxDecoration(
@@ -148,16 +181,16 @@ class _registerStudentState extends State<registerStudent> {
                   borderRadius: BorderRadius.circular(12),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.grey.withOpacity(0.8), // Set shadow color
-                      spreadRadius: 3, // Set spread radius
-                      blurRadius: 7, // Set blur radius
-                      offset: Offset(0, 3), // Set offset
+                      color: Colors.grey.withOpacity(0.4), // Set shadow color
+                      spreadRadius: 1, // Set spread radius
+                      blurRadius: 2, // Set blur radius
+                      offset: Offset(0, 0), // Set offset
                     ),
                   ], // Set border radius
                 ), // Marge en bas
                 child: ElevatedButton(
                   onPressed: () {
-                    // Actions à effectuer lors du clic sur le bouton
+                    _saveRegistrationData();
                   },
                   child: Text(
                     'Register',
@@ -183,7 +216,7 @@ class _registerStudentState extends State<registerStudent> {
                 ),
               ),
               Container(
-                margin: EdgeInsets.only(top: 20),
+                margin: EdgeInsets.only(top: 10),
                 width: 360,
                 height: 60,
                 decoration: BoxDecoration(
@@ -191,10 +224,10 @@ class _registerStudentState extends State<registerStudent> {
                   borderRadius: BorderRadius.circular(12),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.grey.withOpacity(0.8), // Set shadow color
-                      spreadRadius: 3, // Set spread radius
-                      blurRadius: 7, // Set blur radius
-                      offset: Offset(0, 3), // Set offset
+                      color: Colors.grey.withOpacity(0.4), // Set shadow color
+                      spreadRadius: 1, // Set spread radius
+                      blurRadius: 2, // Set blur radius
+                      offset: Offset(0, 0), // Set offset
                     ),
                   ], // Set border radius
                 ), // Marge en bas
@@ -225,7 +258,7 @@ class _registerStudentState extends State<registerStudent> {
               ),
               Container(
                 alignment: AlignmentDirectional.center,
-                margin: EdgeInsets.only(top: 15),
+                margin: EdgeInsets.only(top: 60),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -236,20 +269,63 @@ class _registerStudentState extends State<registerStudent> {
                       ),
                     ),
                     SizedBox(width: 5), // Espace entre les deux Text
-                    Text(
-                      'Login',
-                      style: TextStyle(
-                        fontSize: 17,
-                        color: Colors.green,
+                    GestureDetector(
+                      onTap: () {
+                        // Navigate to the registration page
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(builder: (context) => login()), // Replace RegisterPage() with your registration page widget
+                        );
+                      },
+                      child: Text(
+                        'Login',
+                        style: TextStyle(
+                          fontSize: 17,
+                          color: Colors.green,
+                          decoration: TextDecoration.underline,
+                          decorationColor: Colors.green,
+                        ),
                       ),
                     ),
                   ],
                 ),
               ),
+              // Your other UI code here...
             ],
           ),
         ),
       ),
     );
+  }
+
+  void _saveRegistrationData() async {
+    // Retrieve data from text form fields
+    String username = _usernameController.text.trim();
+    String email = _emailController.text.trim();
+    String password = _passwordController.text.trim();
+
+    // Save data using SharedPreferences
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('username', username);
+    await prefs.setString('email', email);
+    await prefs.setString('password', password);
+    await prefs.setString('connected', "0");
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('Account created successfully'),
+        duration: Duration(seconds: 2), // Adjust the duration as needed
+      ),
+    );
+    // Navigate to login page or perform any other actions
+  }
+
+  @override
+  void dispose() {
+    // Dispose controllers
+    _usernameController.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
   }
 }

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:projecteuromedflutter/pages/newsUemf.dart';
+import 'package:projecteuromedflutter/pages/feed.dart';
+import 'package:projecteuromedflutter/pages/fields.dart';
+import 'package:projecteuromedflutter/pages/loading.dart';
+import 'package:projecteuromedflutter/pages/marks.dart';
 import 'package:projecteuromedflutter/pages/registerStudent.dart';
 import 'package:projecteuromedflutter/pages/registerTeacher.dart';
 import './pages/login.dart';
@@ -13,7 +16,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: login(),
+      home: loading(),
     );
   }
 }
