@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projecteuromedflutter/pages/registerTeacher.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 
@@ -22,6 +23,7 @@ class _RegisterStudentState extends State<RegisterStudent> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0XFFF8F8F8),  // Setting the background color to red
       body: SingleChildScrollView(
         child: Center(
           child: Column(
@@ -31,7 +33,7 @@ class _RegisterStudentState extends State<RegisterStudent> {
               Container(
                 margin: EdgeInsets.only(top: 160), // Marge en bas
                 child: Text(
-                  'Register',
+                  'Register | Student',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 24,
@@ -233,10 +235,13 @@ class _RegisterStudentState extends State<RegisterStudent> {
                 ), // Marge en bas
                 child: ElevatedButton(
                   onPressed: () {
-                    // Actions à effectuer lors du clic sur le bouton
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (context) => registerTeacher()), // Replace RegisterPage() with your registration page widget
+                    );
                   },
                   child: Text(
-                    'Register | Teachers',
+                    'Register | Professor',
                     style: TextStyle(
                       fontSize: 20,
                       color: Color(0xFF004E93), // Couleur du texte du bouton

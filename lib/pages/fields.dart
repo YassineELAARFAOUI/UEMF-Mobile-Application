@@ -55,6 +55,7 @@ class fields extends StatelessWidget {
       }
     ];
     return Scaffold(
+      backgroundColor: Color(0XFFF8F8F8),  // Setting the background color to red
       appBar: AppBar(
         flexibleSpace: Container(
           padding: EdgeInsets.only(top: 35,right: 10,left: 10),

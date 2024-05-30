@@ -11,6 +11,7 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^1.0.6
   shared_preferences: ^2.0.7  # New line added for shared_preferences
+  syncfusion_flutter_calendar: ^20.2.40
 
 dev_dependencies:
   flutter_launcher_icons: "^0.13.1"

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:projecteuromedflutter/pages/login.dart';
+import 'package:projecteuromedflutter/pages/registerStudent.dart';
 
 class registerTeacher extends StatefulWidget {
   @override
@@ -11,18 +13,17 @@ class _registerTeacherState extends State<registerTeacher> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFF8FFEF),
+      backgroundColor: Color(0XFFF8F8F8),  // Setting the background color to red
       body: SingleChildScrollView(
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(height: 20), // Espace pour séparer de la barre d'app
               Container(
-                margin: EdgeInsets.only(top: 120), // Marge en bas
+                margin: EdgeInsets.only(top: 160), // Marge en bas
                 child: Text(
-                  'Register | Teacher',
+                  'Register | Professor',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 24,
@@ -30,15 +31,26 @@ class _registerTeacherState extends State<registerTeacher> {
                 ),
               ),
               Container(
-                margin: EdgeInsets.only(top: 13), // Marge en bas
+                padding: EdgeInsets.only(bottom: 15,left: 20,right: 20),
+                margin: EdgeInsets.only(top: 15),
+                decoration: BoxDecoration(
+                  border: Border(
+                    bottom: BorderSide(
+                      color: Color(0XFF3A3A3A),
+                      width: 0.5,
+                    ),
+                  ),
+                ),
                 child: Text(
                   'Create your university account',
                   style: TextStyle(
-                    fontSize: 24,
+                      fontSize: 17,
+                      color: Color(0XFF3A3A3A),
+                      fontWeight: FontWeight.w200
                   ),
                 ),
               ),
-              //les inputes qui dans page
+              SizedBox(height: 20),
 
               Container(
                 margin: EdgeInsets.only(top: 60),
@@ -48,10 +60,10 @@ class _registerTeacherState extends State<registerTeacher> {
                   borderRadius: BorderRadius.circular(12),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.grey.withOpacity(0.1), // Set shadow color
+                      color: Colors.grey.withOpacity(0.4), // Set shadow color
                       spreadRadius: 1, // Set spread radius
-                      blurRadius: 3, // Set blur radius
-                      offset: Offset(0, 3), // Set offset
+                      blurRadius: 2, // Set blur radius
+                      offset: Offset(0, 0), // Set offset
                     ),
                   ], // Set border radius
                 ),
@@ -65,19 +77,19 @@ class _registerTeacherState extends State<registerTeacher> {
                 ),
               ),
               Container(
-                margin: EdgeInsets.only(top: 13),
+                margin: EdgeInsets.only(top: 10),
                 width: 360,
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: Colors.white, // Set border color and width
                   borderRadius: BorderRadius.circular(12),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.grey.withOpacity(0.1), // Set shadow color
+                      color: Colors.grey.withOpacity(0.4), // Set shadow color
                       spreadRadius: 1, // Set spread radius
-                      blurRadius: 3, // Set blur radius
-                      offset: Offset(0, 3), // Set offset
+                      blurRadius: 2, // Set blur radius
+                      offset: Offset(0, 0), // Set offset
                     ),
-                  ],
+                  ], // Set border radius
                 ),
                 child: TextFormField(
                   decoration: InputDecoration(
@@ -102,19 +114,19 @@ class _registerTeacherState extends State<registerTeacher> {
                 ),
               ),
               Container(
-                margin: EdgeInsets.only(top: 13),
+                margin: EdgeInsets.only(top: 10),
                 width: 360,
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: Colors.white, // Set border color and width
                   borderRadius: BorderRadius.circular(12),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.grey.withOpacity(0.1), // Set shadow color
+                      color: Colors.grey.withOpacity(0.4), // Set shadow color
                       spreadRadius: 1, // Set spread radius
-                      blurRadius: 3, // Set blur radius
-                      offset: Offset(0, 3), // Set offset
+                      blurRadius: 2, // Set blur radius
+                      offset: Offset(0, 0), // Set offset
                     ),
-                  ],
+                  ], // Set border radius
                 ),
                 child: DropdownButtonFormField<String>(
                   decoration: InputDecoration(
@@ -134,19 +146,19 @@ class _registerTeacherState extends State<registerTeacher> {
                 ),
               ),
               Container(
-                margin: EdgeInsets.only(top: 13),
+                margin: EdgeInsets.only(top: 10),
                 width: 360,
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: Colors.white, // Set border color and width
                   borderRadius: BorderRadius.circular(12),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.grey.withOpacity(0.1), // Set shadow color
+                      color: Colors.grey.withOpacity(0.4), // Set shadow color
                       spreadRadius: 1, // Set spread radius
-                      blurRadius: 3, // Set blur radius
-                      offset: Offset(0, 3), // Set offset
+                      blurRadius: 2, // Set blur radius
+                      offset: Offset(0, 0), // Set offset
                     ),
-                  ],
+                  ], // Set border radius
                 ),
                 child: TextFormField(
                   decoration: InputDecoration(
@@ -171,19 +183,19 @@ class _registerTeacherState extends State<registerTeacher> {
                 ),
               ),
               Container(
-                margin: EdgeInsets.only(top: 13),
+                margin: EdgeInsets.only(top: 10),
                 width: 360,
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: Colors.white, // Set border color and width
                   borderRadius: BorderRadius.circular(12),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.grey.withOpacity(0.1), // Set shadow color
+                      color: Colors.grey.withOpacity(0.4), // Set shadow color
                       spreadRadius: 1, // Set spread radius
-                      blurRadius: 3, // Set blur radius
-                      offset: Offset(0, 3), // Set offset
+                      blurRadius: 2, // Set blur radius
+                      offset: Offset(0, 0), // Set offset
                     ),
-                  ],
+                  ], // Set border radius
                 ),
                 child: TextFormField(
                   obscureText: _isPasswordObscured,
@@ -208,7 +220,7 @@ class _registerTeacherState extends State<registerTeacher> {
                 ),
               ),
               Container(
-                margin: EdgeInsets.only(top: 25),
+                margin: EdgeInsets.only(top: 30),
                 width: 360,
                 height: 60,
                 decoration: BoxDecoration(
@@ -259,16 +271,19 @@ class _registerTeacherState extends State<registerTeacher> {
                   borderRadius: BorderRadius.circular(12),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.grey.withOpacity(0.1), // Set shadow color
+                      color: Colors.grey.withOpacity(0.4), // Set shadow color
                       spreadRadius: 1, // Set spread radius
-                      blurRadius: 3, // Set blur radius
-                      offset: Offset(0, 3), // Set offset
+                      blurRadius: 2, // Set blur radius
+                      offset: Offset(0, 0), // Set offset
                     ),
-                  ],// Set border radius
+                  ], // Set border radius
                 ), // Marge en bas
                 child: ElevatedButton(
                   onPressed: () {
-                    // Actions à effectuer lors du clic sur le bouton
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (context) => RegisterStudent()), // Replace RegisterPage() with your registration page widget
+                    );
                   },
                   child: Text(
                     'Register | Student',
@@ -304,11 +319,19 @@ class _registerTeacherState extends State<registerTeacher> {
                       ),
                     ),
                     SizedBox(width: 5), // Espace entre les deux Text
-                    Text(
-                      'Login',
-                      style: TextStyle(
-                        fontSize: 17,
-                        color: Colors.green,
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(builder: (context) => login()), // Replace RegisterPage() with your registration page widget
+                        );
+                      },
+                      child: Text(
+                        'Login',
+                        style: TextStyle(
+                          fontSize: 17,
+                          color: Colors.green,
+                        ),
                       ),
                     ),
                   ],

@@ -3,6 +3,7 @@ import 'package:projecteuromedflutter/widgets/postnews.dart';
 import 'package:projecteuromedflutter/widgets/Menubot.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'Modifyprofile.dart';
 import 'fields.dart';
 import 'login.dart';
 import 'marks.dart';
@@ -13,8 +14,17 @@ class profile extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         flexibleSpace: Container(
+          decoration: BoxDecoration(
+            color: Colors.white,
+            border: Border(
+              bottom: BorderSide(
+                color: Color(0XFFF2F2F2), // Set the color of the border
+                width: 2.0, // Set the width of the border
+              ),
+            ),
+          ),
+          height: 85,
           padding: EdgeInsets.only(top: 35, right: 10, left: 10),
-          color: Colors.transparent,
           child: Row(
             children: [
               // Add your widgets here
@@ -24,7 +34,10 @@ class profile extends StatelessWidget {
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               Spacer(),
-              Icon(Icons.edit),
+              GestureDetector(
+                onTap: () => _modifierProfile(context),
+                child: Icon(Icons.edit),
+              ),
             ],
           ),
         ),
@@ -177,7 +190,11 @@ class profile extends StatelessWidget {
     await prefs.setBool('connected', false);
     _navigateToNextLogin(context);
   }
-
+  void _modifierProfile(BuildContext context) async {
+    Navigator.of(context).push(MaterialPageRoute(
+      builder: (context) => Modifyprofile(), // Using the imported ProfilePage class
+    ));
+  }
   void _navigateToNextLogin(BuildContext context) {
     Future.delayed(Duration(seconds: 0), () {
       Navigator.of(context).pushAndRemoveUntil(
@@ -191,7 +208,7 @@ class profile extends StatelessWidget {
     await prefs.setString('username', "");
     await prefs.setString('email', "");
     await prefs.setString('password', "");
-    await prefs.setString('connected', "0");
+    await prefs.setBool('connected', false);
     Future.delayed(Duration(seconds: 0), () {
       Navigator.of(context).pushAndRemoveUntil(
         MaterialPageRoute(builder: (context) => login()), // Replace Login with the actual next page

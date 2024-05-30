@@ -8,13 +8,47 @@ import 'marks.dart';
 class Search extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    List<Map<String, dynamic>> postData = [
+      {
+        "img": "assets/icons/p1.jpg",
+        "datepub": "16:38 - le 25 avril 2024",
+        "descrip": "Formation en Orthodontie Digitale à l'UEMF"
+      },
+      {
+        "img": "assets/icons/p2.jpg",
+        "datepub": "16:42 - le 25 avril 2024",
+        "descrip": "Partenariat entre l’Université Euromed de Fès et la Paris School of Technology and Business"
+      }
+    ];
     return Scaffold(
       appBar: AppBar(
         flexibleSpace: Container(
-          padding: EdgeInsets.only(top: 35,right: 10,left: 10),
-          color: Colors.transparent, // make the container background transparent
+          decoration: BoxDecoration(
+            color: Colors.white,
+            border: Border(
+              bottom: BorderSide(
+                color: Color(0XFFF2F2F2), // Set the color of the border
+                width: 2.0, // Set the width of the border
+              ),
+            ),
+          ),
+          height: 85,
+          padding: EdgeInsets.only(top: 35, right: 10, left: 10), // make the container background transparent
           child: Row(
-
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Container(
+                width: null,
+                height: 28,
+                margin: EdgeInsets.only(left: 60),
+                child: Text(
+                  'Search',
+                  style: TextStyle(
+                    fontSize: 20, fontWeight: FontWeight.bold
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
       ),
@@ -93,6 +127,18 @@ class Search extends StatelessWidget {
                 ),
               ),
 
+            ),
+            Column(
+              children: [
+                ...postData.map((post) {
+                  return PostNews(
+                    img: post['img'],
+                    datepub: post['datepub'],
+                    descrip: post['descrip'],
+                  );
+                }).toList(),
+                SizedBox(height: 40), // Add SizedBox at the end
+              ],
             ),
           ],
         ),

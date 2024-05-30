@@ -4,6 +4,8 @@ import 'package:projecteuromedflutter/widgets/Menubot.dart';
 
 import 'fields.dart';
 import 'marks.dart';
+import 'ProgramPage.dart';
+
 
 class feed extends StatelessWidget {
   @override
@@ -21,10 +23,20 @@ class feed extends StatelessWidget {
       }
     ];
     return Scaffold(
+      backgroundColor: Color(0XFFF8F8F8),  // Setting the background color to red
       appBar: AppBar(
         flexibleSpace: Container(
-          padding: EdgeInsets.only(top: 35,right: 10,left: 10),
-          color: Colors.transparent, // make the container background transparent
+          decoration: BoxDecoration(
+            color: Colors.white,
+            border: Border(
+              bottom: BorderSide(
+                color: Color(0XFFF2F2F2), // Set the color of the border
+                width: 2.0, // Set the width of the border
+              ),
+            ),
+          ),
+          height: 85,
+          padding: EdgeInsets.only(top: 35, right: 10, left: 10), // make the container background transparent
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -228,46 +240,55 @@ class feed extends StatelessWidget {
                                       ),
                                     ),
                                   ),
-
-                                  Container(
-                                    height: 130,
-                                    width: 95,
-                                    decoration: BoxDecoration(                                color: Colors.white,
-                                      borderRadius: BorderRadius.circular(4),
-                                    ),
-                                    child: Column(
-                                      children: [
-                                        Container(
-                                          width: 95,
-                                          height: 95,
-                                          child: Center(
-                                            child: Container(
-                                              width: 60,
-                                              height: 60,
-                                              child: Image.asset(
-                                                'assets/icons/schedule.png', // Specify your image path
-                                                fit: BoxFit.contain,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        Container(
-                                          width: 95,
-                                          height: 35,
-                                          child: Container(
+                                  GestureDetector(
+                                    onTap: () {
+                                      // Add your navigation logic here
+                                      // For example, you can use Navigator to navigate to another page
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(builder: (context) => ProgramPage()), // Replace NextPage with the name of your destination page
+                                      );
+                                    },
+                                    child: Container(
+                                      height: 130,
+                                      width: 95,
+                                      decoration: BoxDecoration(                                color: Colors.white,
+                                        borderRadius: BorderRadius.circular(4),
+                                      ),
+                                      child: Column(
+                                        children: [
+                                          Container(
+                                            width: 95,
+                                            height: 95,
                                             child: Center(
-                                              child: Text(
-                                                'SCHEDULE',
-                                                style: TextStyle(
-                                                  fontSize: 13,
-                                                  color: Color(0xFF004E93),
+                                              child: Container(
+                                                width: 60,
+                                                height: 60,
+                                                child: Image.asset(
+                                                  'assets/icons/schedule.png', // Specify your image path
+                                                  fit: BoxFit.contain,
                                                 ),
                                               ),
                                             ),
                                           ),
+                                          Container(
+                                            width: 95,
+                                            height: 35,
+                                            child: Container(
+                                              child: Center(
+                                                child: Text(
+                                                  'SCHEDULE',
+                                                  style: TextStyle(
+                                                    fontSize: 13,
+                                                    color: Color(0xFF004E93),
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
 
-                                        )
-                                      ],
+                                          )
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ],

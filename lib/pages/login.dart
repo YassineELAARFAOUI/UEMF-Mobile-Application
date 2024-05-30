@@ -19,7 +19,7 @@ class _LoginState extends State<login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // Your Scaffold code...
+      backgroundColor: Color(0XFFF8F8F8),  // Setting the background color to red
       body: SingleChildScrollView(
         // Your SingleChildScrollView code...
         child: Column(
@@ -81,7 +81,7 @@ class _LoginState extends State<login> {
                   controller: _usernameController,
                   decoration: InputDecoration(
                     border: InputBorder.none,
-                    labelText: 'Username',
+                    labelText: 'Email',
                     labelStyle: TextStyle(color: _isFocusedusername ? Colors.green : Colors.black), // Change color based on focus
                     contentPadding: EdgeInsets.symmetric(horizontal: 18, vertical: 15),
                   ),
@@ -236,7 +236,7 @@ class _LoginState extends State<login> {
     String username = _usernameController.text.trim();
     String password = _passwordController.text.trim();
     if (username == usernamestore && password == passwordstore && username!="" && password!="") {
-      await prefs.setString('connected', "1");
+      await prefs.setBool('connected', true);
       // Navigate to home page or perform any other actions upon successful login
       Navigator.pushReplacement(
         context,

@@ -38,17 +38,16 @@ class loading extends StatelessWidget {
   }
   void _loginAuto(BuildContext context) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    String? connected = prefs.getString('connected');
+    bool? connected = prefs.getBool('connected');
 
-    // Simulate successful login (Replace with actual authentication logic)
-    if (connected== "1") {
+    if (connected== true) {
       _navigateToNextFeed(context);
     } else {
       _navigateToNextLogin(context);
     }
   }
   void _navigateToNextLogin(BuildContext context) {
-    Future.delayed(Duration(seconds: 3), () {
+    Future.delayed(Duration(seconds: 1), () {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => login()), // Replace LoginPage() with the actual next page
@@ -56,7 +55,7 @@ class loading extends StatelessWidget {
     });
   }
   void _navigateToNextFeed(BuildContext context) {
-    Future.delayed(Duration(seconds: 3), () {
+    Future.delayed(Duration(seconds: 1), () {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => feed()), // Replace LoginPage() with the actual next page
